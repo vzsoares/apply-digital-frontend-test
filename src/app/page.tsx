@@ -9,11 +9,11 @@ export default async function Home() {
             {/* Search section */}
             <section className="box">
                 <div className="section-container py-6 gap-6">
-                    <h2>Top Sellers</h2>
+                    <h2 className="font-bold text-4xl text-gray-medium">Top Sellers</h2>
                     <div className="box flex-row justify-end items-center">
-                        <p>Genre</p>
-                        <div className="px-3">|</div>
-                        <select className="border border-gray-300 rounded-md p-2"><option value="all">All</option></select>
+                        <p className="font-bold text-xl text-gray-medium">Genre</p>
+                        <div className="px-3 text-gray-medium">|</div>
+                        <select className="rounded-md p-2 text-gray-medium bg-transparent min-w-[202px]" name="card-filter-select"><option value="all">All</option></select>
                     </div>
                 </div>
             </section>
