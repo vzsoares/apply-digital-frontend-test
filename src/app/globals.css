@@ -1,8 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+/* custom classes first in precedence apply order */
 .section-container {
   @apply max-w-screen-xl px-3 self-center flex flex-col w-full;
 }
 
+.box {
+  @apply flex flex-col;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

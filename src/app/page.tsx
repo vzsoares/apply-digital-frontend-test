@@ -1,7 +1,43 @@
 export default async function Home() {
     return (
-        <main className='flex min-h-screen flex-col'>
-            <section className="section-container">Hello, world!</section>
+        <main className='box min-h-screen'>
+            {/* navbar section */}
+            <section className="bg-gray-200 box">
+                <div className="section-container py-4">
+                    <div className="flex justify-between"><h3>GamerShop</h3><div>cart icon</div></div>
+                </div>
+            </section>
+            {/* Search section */}
+            <section className="box">
+                <div className="section-container py-6 gap-6">
+                    <h2>Top Sellers</h2>
+                    <div className="box flex-row justify-end items-center">
+                        <p>Genre</p>
+                        <div className="px-3">|</div>
+                        <select className="border border-gray-300 rounded-md p-2"><option value="all">All</option></select>
+                    </div>
+                </div>
+            </section>
+            {/* Card section */}
+            <section className="box py-6 flex-1">
+                <div className="section-container">
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(327px,380px))] gap-x-3 gap-y-3 md:gap-x-6 md:gap-y-6 justify-center justify-items-center min-h-[200px] w-full flex-1">
+                        {
+
+                            [1, 2, 3, 4, 5, 6, 7, 8].map((item, i) => (
+                                <div key={i} className="w-full max-w-[450px] min-w-[296px] flex flex-col bg-transparent relative">test</div>
+                            ))
+                        }
+                    </div>
+                    <button className="mt-6 mr-auto bg-gray-300 p-3 rounded-md">See More</button>
+                </div>
+            </section>
+            {/* Footer section */}
+            <section className="bg-gray-200 box">
+                <div className="section-container py-8">
+                    <div className="self-center">apply icon</div>
+                </div>
+            </section>
         </main>
     )
 }
