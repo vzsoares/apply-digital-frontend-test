@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+.section-container {
+  @apply max-w-screen-xl px-3 self-center flex flex-col w-full;
+}
+
