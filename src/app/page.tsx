@@ -1,12 +1,11 @@
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
+
 export default async function Home() {
     return (
         <main className='box min-h-screen'>
             {/* navbar section */}
-            <section className="bg-gray-200 box">
-                <div className="section-container py-4">
-                    <div className="flex justify-between"><h3>GamerShop</h3><div>cart icon</div></div>
-                </div>
-            </section>
+            <Navbar />
             {/* Search section */}
             <section className="box">
                 <div className="section-container py-6 gap-6">
@@ -33,11 +32,7 @@ export default async function Home() {
                 </div>
             </section>
             {/* Footer section */}
-            <section className="bg-gray-200 box">
-                <div className="section-container py-8">
-                    <div className="self-center">apply icon</div>
-                </div>
-            </section>
+            <Footer />
         </main>
     )
 }
