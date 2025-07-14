@@ -29,19 +29,25 @@ export default function CardSection() {
                     {
 
                         data && data.games.map((item, i) => (
-                            <div key={i} className="w-full max-w-[450px] min-w-[296px] flex flex-col bg-transparent relative border-[0.5px] rounded-2xl min-h-[436px] p-6 relative">
-                                <Image src="/images/apply-digital-logo.png" alt="apply-digital-logo" width={170} height={44} />
-                                <p className="font-bold color-[#737373] mt-1.5 mb-3">GENRE</p>
+                            <div key={i} className="w-full max-w-[450px] min-w-[296px] flex flex-col bg-transparent relative border-[0.5px] rounded-2xl min-h-[436px] p-6 relative border-[#8F8F8F]">
+                                <Image
+                                    src={item.image}
+                                    alt={item.name}
+                                    width={380}
+                                    height={240}
+                                    className="w-full h-60 object-cover rounded-t-lg"
+                                />
+                                <p className="font-bold text-[#737373] mt-5 mb-3">GENRE</p>
                                 <div className="flex justify-between mb-5">
-                                    <p className="font-bold color-[#737373] mt-1.5 mb-3">Product name</p>
-                                    <p className="font-bold color-[#737373] mt-1.5 mb-3">$119</p>
+                                    <p className="font-bold text-[#3B3B3B] mt-1.5 mb-3">Product name</p>
+                                    <p className="font-bold text-[#3B3B3B] mt-1.5 mb-3">$119</p>
                                 </div>
-                                <button className="font-bold text-gray-medium border rounded-lg">ADD TO CART</button>
+                                <button className="font-bold text-gray-medium border rounded-lg h-[56px] border-[#3B3B3B]">ADD TO CART</button>
                             </div>
                         ))
                     }
                 </div>
-                <button className="mt-6 mr-auto bg-gray-300 p-3 rounded-md">See More</button>
+                <button className="mt-6 mr-auto text-[#FFFFFF] bg-[#585660] p-3 rounded-md font-bold">SEE MORE</button>
             </div>
         </section>
     )
