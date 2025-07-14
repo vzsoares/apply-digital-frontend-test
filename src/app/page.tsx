@@ -1,6 +1,6 @@
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
-import Image from "next/image";
+import CardSection from "./CardSection";
 
 export default async function Home() {
     return (
@@ -19,27 +19,7 @@ export default async function Home() {
                 </div>
             </section>
             {/* Card section */}
-            <section className="box py-6 flex-1">
-                <div className="section-container">
-                    <div className="grid grid-cols-[repeat(auto-fit,minmax(327px,380px))] gap-x-3 gap-y-3 md:gap-x-6 md:gap-y-6 justify-center justify-items-center min-h-[436px] w-full flex-1">
-                        {
-
-                            [1, 2, 3, 4, 5, 6, 7, 8].map((item, i) => (
-                                <div key={i} className="w-full max-w-[450px] min-w-[296px] flex flex-col bg-transparent relative border-[0.5px] rounded-2xl min-h-[436px] p-6 relative">
-                                    <Image src="/images/apply-digital-logo.png" alt="apply-digital-logo" width={170} height={44} />
-                                    <p className="font-bold color-[#737373] mt-1.5 mb-3">GENRE</p>
-                                    <div className="flex justify-between mb-5">
-                                        <p className="font-bold color-[#737373] mt-1.5 mb-3">Product name</p>
-                                        <p className="font-bold color-[#737373] mt-1.5 mb-3">$119</p>
-                                    </div>
-                                    <button className="font-bold text-gray-medium border">ADD TO CART</button>
-                                </div>
-                            ))
-                        }
-                    </div>
-                    <button className="mt-6 mr-auto bg-gray-300 p-3 rounded-md">See More</button>
-                </div>
-            </section>
+            <CardSection />
             {/* Footer section */}
             <Footer />
         </main>
