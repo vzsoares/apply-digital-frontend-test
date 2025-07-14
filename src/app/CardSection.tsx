@@ -1,32 +1,10 @@
 'use client';
 
-import axios from "axios";
 import Image from "next/image";
-import { useMemo } from "react";
-import useSWRInfinite from 'swr/infinite'
-import { GamesApiResponse } from "./api/games/route";
-import _ from 'lodash';
-
-const fetcher = (url: string) => axios.get<GamesApiResponse>(url).then(res => res.data);
-const getKey = (pageIndex: number, previousPageData: GamesApiResponse) => {
-    if (previousPageData && !previousPageData?.games?.length) return null
-    if (_.isNumber(previousPageData?.totalPages) && (pageIndex >= previousPageData?.totalPages)) return null
-
-    const url = new URL('http://localhost:3000/api/games')
-
-    url.searchParams.set('page', pageIndex.toString())
-
-    return url.toString()
-}
+import { useCardService } from "@/hooks/card-service";
 
 export default function CardSection() {
-    const { data, isLoading, setSize, isValidating, size } = useSWRInfinite(getKey, fetcher, { revalidateOnFocus: false })
-
-    const isLastPage = useMemo<boolean>(() => {
-        if (!data || data.length === 0) return true;
-        const lastPage = data[data.length - 1];
-        return (lastPage?.games?.length === 0) || (!!lastPage?.totalPages && (size >= lastPage.totalPages));
-    }, [data, size]);
+    const { data, isLoading, isValidating, isLastPage, loadMore } = useCardService();
 
 
     return (
@@ -58,7 +36,7 @@ export default function CardSection() {
                 {isValidating && !isLoading && <div className="text-center mt-4">Loading more...</div>}
                 {!isLastPage && <button
                     className="mt-6 mr-auto text-[#FFFFFF] bg-[#585660] p-3 rounded-md font-bold"
-                    onClick={() => setSize(v => v + 1)}
+                    onClick={loadMore}
                     disabled={isValidating || isLoading}
                 >
                     SEE MORE
