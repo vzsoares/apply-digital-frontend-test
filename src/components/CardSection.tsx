@@ -19,7 +19,7 @@ export default function CardSection() {
                         data && data.map(v => v.games.map((item, i) => {
                             const isInCart = cartItems.some(cartItem => cartItem.game.id === item.id);
                             return (
-                                <div key={i} className="w-full max-w-[450px] min-w-[296px] flex flex-col bg-transparent relative border-[0.5px] rounded-2xl min-h-[436px] p-6 relative border-[#8F8F8F]">
+                                <div key={i} className="w-full max-w-[450px] min-w-[296px] flex flex-col bg-transparent relative border-[0.5px] rounded-2xl min-h-[436px] p-6 relative border-gray-border">
                                     <div className="relative w-full h-60">
                                         <Image
                                             src={item.image}
@@ -28,18 +28,18 @@ export default function CardSection() {
                                             height={0}
                                             className="w-full h-60 object-cover rounded-t-lg"
                                         />
-                                        {item.isNew && <div className="py-2 px-4 text-[#3B3B3B] bg-white absolute left-2 top-2 rounded-lg border">New</div>}
+                                        {item.isNew && <div className="py-2 px-4 text-gray-medium bg-white absolute left-2 top-2 rounded-lg border">New</div>}
                                     </div>
-                                    <p className="font-bold text-[#737373] mt-5 mb-3 uppercase">{item.genre}</p>
+                                    <p className="font-bold text-gray-light mt-5 mb-3 uppercase">{item.genre}</p>
                                     <div className="flex justify-between mb-5">
-                                        <p className="font-bold text-[#3B3B3B] mt-1.5 mb-3">{item.name}</p>
-                                        <p className="font-bold text-[#3B3B3B] mt-1.5 mb-3">${item.price}</p>
+                                        <p className="font-bold text-gray-medium mt-1.5 mb-3">{item.name}</p>
+                                        <p className="font-bold text-gray-medium mt-1.5 mb-3">${item.price}</p>
                                     </div>
                                     <button
                                         onClick={() => isInCart ? removeFromCart(item.id) : addToCart(item)}
                                         className={`font-bold border rounded-lg h-[56px] transition-colors mt-auto ${isInCart
-                                            ? 'text-white bg-[#585660] border-[#585660] hover:bg-[#464450]'
-                                            : 'text-gray-medium border-[#3B3B3B] hover:bg-gray-100'
+                                            ? 'text-white bg-background border-background hover:bg-button-hover'
+                                            : 'text-gray-medium border-gray-medium hover:bg-gray-100'
                                             }`}
                                     >
                                         {isInCart ? 'REMOVE FROM CART' : 'ADD TO CART'}
@@ -51,7 +51,7 @@ export default function CardSection() {
                 </div>
                 {isValidating && !isLoading && <div className="text-center mt-4">Loading more...</div>}
                 {!isLastPage && <button
-                    className="mt-6 mr-auto text-[#FFFFFF] bg-[#585660] p-3 rounded-md font-bold"
+                    className="mt-6 mr-auto text-white bg-background p-3 rounded-md font-bold"
                     onClick={loadMore}
                     disabled={isValidating || isLoading}
                 >

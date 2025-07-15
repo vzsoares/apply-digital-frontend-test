@@ -11,6 +11,10 @@ const config: Config = {
         colors: {
           'background': '#585660',
           'gray-medium': '#3B3B3B',
+         'gray-light': '#737373',
+         'gray-border': '#8F8F8F',
+         'button-hover': '#464450',
+         'gray-border-light': 'rgb(209 213 219)', // gray-300 equivalent
         },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
