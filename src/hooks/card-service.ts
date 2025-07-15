@@ -9,13 +9,15 @@ import { GamesApiResponse } from "@/app/api/games/route";
 export const selectedGenreAtom = atom<string>('all');
 export const availableFiltersAtom = atom<string[]>([]);
 
+const GAMES_API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api/games';
+
 const fetcher = (url: string) => axios.get<GamesApiResponse>(url).then(res => res.data);
 
 const getKey = (genre?: string) => (pageIndex: number, previousPageData: GamesApiResponse) => {
     if (previousPageData && !previousPageData?.games?.length) return null;
     if (_.isNumber(previousPageData?.totalPages) && (pageIndex >= previousPageData?.totalPages)) return null;
 
-    const url = new URL('http://localhost:3000/api/games');
+    const url = new URL(GAMES_API_URL);
     url.searchParams.set('page', (pageIndex + 1).toString());
     if (genre && genre !== 'all') {
         url.searchParams.set('genre', genre);
