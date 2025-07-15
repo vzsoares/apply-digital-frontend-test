@@ -67,7 +67,7 @@ export default function Cart() {
                                                 <Image src="/icons/x-close-icon.svg" width={24} height={24} alt="cart icon" />
                                             </button>
                                         </div>
-                                        <div className="flex flex-col">
+                                        <div className="flex flex-col flex-1">
                                             <div className="flex justify-between items-start mb-2 mt-2">
                                                 <div className="flex flex-col gap-3">
                                                     <p className="text-[#737373] uppercase font-bold">{item.game.genre}</p>
