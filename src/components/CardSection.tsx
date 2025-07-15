@@ -32,7 +32,7 @@ export default function CardSection() {
                                 </div>
                                 <button
                                     onClick={() => addToCart(item)}
-                                    className="font-bold text-gray-medium border rounded-lg h-[56px] border-[#3B3B3B] hover:bg-gray-100 transition-colors"
+                                    className="font-bold text-gray-medium border rounded-lg h-[56px] border-[#3B3B3B] hover:bg-gray-100 transition-colors mt-auto"
                                 >
                                     ADD TO CART
                                 </button>
