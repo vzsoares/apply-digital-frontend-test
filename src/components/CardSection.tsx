@@ -1,24 +1,10 @@
 'use client';
 
-    // Pass filter data to parent component
-    React.useEffect(() => {
-        if (onFilterDataReady && availableFilters.length > 0) {
-            onFilterDataReady({ availableFilters, selectedGenre, setGenreFilter });
-        }
-    }, [availableFilters, selectedGenre, setGenreFilter, onFilterDataReady]);
 import Image from "next/image";
 import { useCardService } from "@/hooks/card-service";
 
-interface CardSectionProps {
-    onFilterDataReady?: (filterData: {
-        availableFilters: string[];
-        selectedGenre: string;
-        setGenreFilter: (genre: string) => void;
-    }) => void;
-}
-
-export default function CardSection({ onFilterDataReady }: CardSectionProps) {
-    const { data, isLoading, isValidating, isLastPage, loadMore, availableFilters, selectedGenre, setGenreFilter } = useCardService();
+export default function CardSection() {
+    const { data, isLoading, isValidating, isLastPage, loadMore } = useCardService();
 
 
     return (
