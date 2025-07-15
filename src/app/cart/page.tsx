@@ -99,17 +99,36 @@ export default function Cart() {
                     </div>
 
                     {/* Order summary section */}
-                    <div className="rounded-lg px-4 py-6 sticky top-6 flex flex-col w-[75%] h-fit boder border-[0.5px] border-[#8F8F8F]">
-                        <h3 className="font-bold text-2xl mb-3 text-[#3B3B3B]">Order Summary</h3>
-                        <p className="text-[#3B3B3B]">{itemCount} items</p>
+                    <div className="sticky top-6 w-full md:w-[75%] h-fit">
+                        <div className="rounded-lg flex flex-col boder border-[0.5px] border-[#8F8F8F]  px-4 py-6 ">
+                            <h3 className="font-bold text-2xl mb-3 text-[#3B3B3B] mt-2">Order Summary</h3>
+                            <p className="text-[#3B3B3B] text-[1.125rem]">{itemCount} items</p>
 
-                        <hr className="border-gray-300" />
+                            <div className="space-y-3 pt-12">
+                                {cartItems.map((item) => (
+                                    <div key={item.game.id} className="flex justify-between text-[#3B3B3B] text-[1.125rem]">
+                                        <span className="">
+                                            {item.game.name}
+                                        </span>
+                                        <span className="">
+                                            ${(item.game.price).toFixed(2)}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
 
-                        <div className="flex justify-between text-2xl font-bold text-[#3B3B3B]">
-                            <span>Order Total</span>
-                            <span>${total.toFixed(2)}</span>
+
+
+                            <hr className="border-gray-300 my-8" />
+
+                            <div className="flex justify-between text-2xl font-bold text-[#3B3B3B] pb-6">
+                                <span>Order Total</span>
+                                <span>${total.toFixed(2)}</span>
+                            </div>
                         </div>
+                        <button className="mt-8 w-full h-[56px] bg-[#585660] text-[#FFFFFF] rounded" onClick={() => alert("Hello!!")}>Checkout</button>
                     </div>
+
                 </div>
             </section>
             {/* Footer section */}
