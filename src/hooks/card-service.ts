@@ -1,8 +1,12 @@
 import axios from "axios";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
+import { atom, useAtom } from 'jotai';
 import useSWRInfinite from 'swr/infinite';
 import _ from 'lodash';
 import { GamesApiResponse } from "@/app/api/games/route";
+
+export const selectedGenreAtom = atom<string>('all');
+export const availableFiltersAtom = atom<string[]>([]);
 
 const fetcher = (url: string) => axios.get<GamesApiResponse>(url).then(res => res.data);
 
@@ -20,18 +24,22 @@ const getKey = (genre?: string) => (pageIndex: number, previousPageData: GamesAp
 };
 
 export const useCardService = () => {
-    const [selectedGenre, setSelectedGenre] = useState<string>('all');
+    const [selectedGenre, setSelectedGenre] = useAtom(selectedGenreAtom);
+    const [availableFilters, setAvailableFilters] = useAtom(availableFiltersAtom);
 
-    const { data, isLoading, setSize, isValidating, size, mutate } = useSWRInfinite(
+    const { data, isLoading, setSize, isValidating, size } = useSWRInfinite(
         getKey(selectedGenre),
         fetcher,
-        { revalidateOnFocus: false }
+        { revalidateOnFocus: false, revalidateFirstPage: false }
     );
 
-    const availableFilters = useMemo(() => {
-        if (!data || data.length === 0) return [];
-        return data[0]?.availableFilters || [];
-    }, [data]);
+    // Update availableFilters atom when data changes
+    useMemo(() => {
+        if (data && data.length > 0) {
+            const filters = data[0]?.availableFilters || [];
+            setAvailableFilters(filters);
+        }
+    }, [data, setAvailableFilters]);
 
     const isLastPage = useMemo<boolean>(() => {
         if (!data || data.length === 0) return true;
@@ -43,9 +51,7 @@ export const useCardService = () => {
 
     const setGenreFilter = useCallback((genre: string) => {
         setSelectedGenre(genre);
-        mutate(undefined, false); // Clear cache
-        setSize(1); // Reset to first page when filter changes
-    }, [setSelectedGenre, setSize, mutate]);
+    }, [setSelectedGenre]);
 
     return {
         data,
