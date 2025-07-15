@@ -18,13 +18,16 @@ export default function CardSection() {
 
                         data && data.map(v => v.games.map((item, i) => (
                             <div key={i} className="w-full max-w-[450px] min-w-[296px] flex flex-col bg-transparent relative border-[0.5px] rounded-2xl min-h-[436px] p-6 relative border-[#8F8F8F]">
-                                <Image
-                                    src={item.image}
-                                    alt={item.name}
-                                    width={380}
-                                    height={0}
-                                    className="w-full h-60 object-cover rounded-t-lg"
-                                />
+                                <div className="relative w-full h-60">
+                                    <Image
+                                        src={item.image}
+                                        alt={item.name}
+                                        width={380}
+                                        height={0}
+                                        className="w-full h-60 object-cover rounded-t-lg"
+                                    />
+                                    {item.isNew && <div className="py-2 px-4 text-[#3B3B3B] bg-white absolute left-2 top-2 rounded-lg border">New</div>}
+                                </div>
                                 <p className="font-bold text-[#737373] mt-5 mb-3 uppercase">{item.genre}</p>
                                 <div className="flex justify-between mb-5">
                                     <p className="font-bold text-[#3B3B3B] mt-1.5 mb-3">{item.name}</p>

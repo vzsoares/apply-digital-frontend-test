@@ -52,13 +52,17 @@ export default function Cart() {
                                 <div key={item.game.id} className="bg-white p-4">
                                     <div className="flex gap-6 flex-col md:flex-row">
                                         <div className="flex gap-3">
-                                            <Image
-                                                src={item.game.image}
-                                                alt={item.game.name}
-                                                width={260}
-                                                height={0}
-                                                className="object-cover w-full h-[136px] md:w-[256px] md:h-[156px] flex"
-                                            />
+                                            <div className="relative w-full h-[136px] md:w-[256px] md:h-[156px]">
+                                                <Image
+                                                    src={item.game.image}
+                                                    alt={item.game.name}
+                                                    width={260}
+                                                    height={0}
+                                                    className="object-cover w-full h-[136px] md:w-[256px] md:h-[156px] flex"
+                                                />
+                                                {item.game.isNew && <div className="py-2 px-4 text-[#3B3B3B] bg-white absolute left-2 top-2 rounded-lg border">New</div>}
+                                            </div>
+
                                             <button
                                                 onClick={() => removeFromCart(item.game.id)}
                                                 className="p-1 flex self-start  md:hidden"
