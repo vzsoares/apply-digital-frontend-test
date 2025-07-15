@@ -17,13 +17,10 @@ export const useCartService = () => {
         setCartItems(items => {
             const existingItem = items.find(item => item.game.id === game.id);
             if (existingItem) {
-                return items.map(item =>
-                    item.game.id === game.id
-                        ? { ...item, quantity: item.quantity + quantity }
-                        : item
-                );
+                // Don't add if item already exists - only allow one of each
+                return items;
             }
-            return [...items, { game, quantity }];
+            return [...items, { game, quantity: 1 }];
         });
     }, [setCartItems]);
 
