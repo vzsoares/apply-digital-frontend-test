@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useEffect } from "react";
 import { atom, useAtom } from 'jotai';
+import { useRouter, useSearchParams } from 'next/navigation';
 import useSWRInfinite from 'swr/infinite';
 import _ from 'lodash';
 import { GamesApiResponse } from "@/app/api/games/route";
@@ -24,6 +25,8 @@ const getKey = (genre?: string) => (pageIndex: number, previousPageData: GamesAp
 };
 
 export const useCardService = () => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
     const [selectedGenre, setSelectedGenre] = useAtom(selectedGenreAtom);
     const [availableFilters, setAvailableFilters] = useAtom(availableFiltersAtom);
 
@@ -51,7 +54,27 @@ export const useCardService = () => {
 
     const setGenreFilter = useCallback((genre: string) => {
         setSelectedGenre(genre);
-    }, [setSelectedGenre]);
+
+        // Update URL when genre changes
+        const newSearchParams = new URLSearchParams(searchParams.toString());
+        if (genre === 'all') {
+            newSearchParams.delete('genre');
+        } else {
+            newSearchParams.set('genre', genre);
+        }
+        const newUrl = `${window.location.pathname}${newSearchParams.toString() ? `?${newSearchParams.toString()}` : ''}`;
+        router.replace(newUrl);
+    }, [setSelectedGenre, router, searchParams]);
+
+
+    // Sync URL with genre filter on component mount
+    useEffect(() => {
+        const urlGenre = searchParams.get('genre') || 'all';
+        if (urlGenre !== selectedGenre) {
+            setSelectedGenre(urlGenre);
+        }
+    }, [searchParams, selectedGenre, setSelectedGenre]);
+
 
     return {
         data,

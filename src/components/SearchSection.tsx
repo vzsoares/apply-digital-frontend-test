@@ -1,11 +1,9 @@
 'use client';
 
-import { useAtom } from 'jotai';
-import { selectedGenreAtom, availableFiltersAtom } from '@/hooks/card-service';
+import { useCardService } from '@/hooks/card-service';
 
 export default function SearchSection() {
-    const [selectedGenre, setSelectedGenre] = useAtom(selectedGenreAtom);
-    const [availableFilters] = useAtom(availableFiltersAtom);
+    const { setGenreFilter, availableFilters, selectedGenre } = useCardService()
 
     return (
         <section className="box">
@@ -18,7 +16,7 @@ export default function SearchSection() {
                         className="rounded-md p-2 text-gray-medium bg-transparent min-w-[202px]"
                         name="card-filter-select"
                         value={selectedGenre}
-                        onChange={(e) => setSelectedGenre(e.target.value)}
+                        onChange={(e) => setGenreFilter(e.target.value)}
                     >
                         <option value="all">All</option>
                         {availableFilters.map((genre) => (
