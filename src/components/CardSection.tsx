@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import { useCardService } from "@/hooks/card-service";
+import { useCartService } from "@/hooks/cart-service";
 
 export default function CardSection() {
     const { data, isLoading, isValidating, isLastPage, loadMore } = useCardService();
+    const { addToCart } = useCartService();
 
 
     return (
@@ -23,12 +25,17 @@ export default function CardSection() {
                                     height={240}
                                     className="w-full h-60 object-cover rounded-t-lg"
                                 />
-                                <p className="font-bold text-[#737373] mt-5 mb-3">GENRE</p>
+                                <p className="font-bold text-[#737373] mt-5 mb-3">{item.genre}</p>
                                 <div className="flex justify-between mb-5">
-                                    <p className="font-bold text-[#3B3B3B] mt-1.5 mb-3">Product name</p>
-                                    <p className="font-bold text-[#3B3B3B] mt-1.5 mb-3">$119</p>
+                                    <p className="font-bold text-[#3B3B3B] mt-1.5 mb-3">{item.name}</p>
+                                    <p className="font-bold text-[#3B3B3B] mt-1.5 mb-3">${item.price}</p>
                                 </div>
-                                <button className="font-bold text-gray-medium border rounded-lg h-[56px] border-[#3B3B3B]">ADD TO CART</button>
+                                <button
+                                    onClick={() => addToCart(item)}
+                                    className="font-bold text-gray-medium border rounded-lg h-[56px] border-[#3B3B3B] hover:bg-gray-100 transition-colors"
+                                >
+                                    ADD TO CART
+                                </button>
                             </div>
                         )))
                     }
