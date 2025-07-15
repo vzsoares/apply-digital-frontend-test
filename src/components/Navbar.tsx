@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCartService } from "@/hooks/cart-service";
+import { useCartService } from "@/services/cart-service";
 
 export default function Navbar() {
     const { itemCount } = useCartService();

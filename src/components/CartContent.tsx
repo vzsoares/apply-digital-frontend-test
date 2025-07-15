@@ -1,5 +1,5 @@
 'use client';
-import { useCartService } from "@/hooks/cart-service";
+import { useCartService } from "@/services/cart-service";
 import EmptyCartSection from "./cart/EmptyCartSection";
 import CartNavigationSection from "./cart/CartNavigationSection";
 import CartHeaderSection from "./cart/CartHeaderSection";

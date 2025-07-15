@@ -1,6 +1,6 @@
 'use client';
 
-import { useCardService } from '@/hooks/card-service';
+import { useCardService } from '@/services/card-service';
 
 export default function SearchSection() {
     const { setGenreFilter, availableFilters, selectedGenre } = useCardService()

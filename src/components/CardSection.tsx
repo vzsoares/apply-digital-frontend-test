@@ -1,8 +1,8 @@
 'use client';
 
 import Image from "next/image";
-import { useCardService } from "@/hooks/card-service";
-import { useCartService } from "@/hooks/cart-service";
+import { useCardService } from "@/services/card-service";
+import { useCartService } from "@/services/cart-service";
 
 export default function CardSection() {
     const { data, isLoading, isValidating, isLastPage, loadMore } = useCardService();
