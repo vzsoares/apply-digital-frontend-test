@@ -4,7 +4,7 @@ import SearchSection from './SearchSection';
 
 // Mock the hook with minimal setup
 const mockSetGenreFilter = jest.fn();
-jest.mock('../hooks/card-service', () => ({
+jest.mock('../services/card-service', () => ({
     useCardService: () => ({
         setGenreFilter: mockSetGenreFilter,
         availableFilters: ['Action', 'Adventure', 'RPG'],
