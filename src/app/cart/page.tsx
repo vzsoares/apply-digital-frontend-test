@@ -99,7 +99,7 @@ export default function Cart() {
                     </div>
 
                     {/* Order summary section */}
-                    <div className="sticky top-6 w-full md:w-[75%] h-fit">
+                    <div className="sticky top-6  h-fit">
                         <div className="rounded-lg flex flex-col boder border-[0.5px] border-[#8F8F8F]  px-4 py-6 ">
                             <h3 className="font-bold text-2xl mb-3 text-[#3B3B3B] mt-2">Order Summary</h3>
                             <p className="text-[#3B3B3B] text-[1.125rem]">{itemCount} items</p>
