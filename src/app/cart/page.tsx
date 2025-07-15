@@ -30,15 +30,15 @@ export default function Cart() {
             <section className="box">
                 <Link href="/" className="section-container py-6 flex-row gap-2 cursor-pointer">
                     <Image src="/icons/arrow-left-icon.svg" width={24} height={24} alt="cart icon" />
-                    <h3 className="text-[#3B3B3B] font-medium">Back to Catalog</h3>
+                    <h3 className="text-gray-medium font-medium">Back to Catalog</h3>
                 </Link>
             </section>
             {/* Summary section */}
             <section className="box">
                 <div className="section-container py-12">
                     <div className="">
-                        <h1 className="text-3xl font-bold mb-3 text-[#3B3B3B] text-4xl">Your Cart</h1>
-                        <p className="text-[#3B3B3B] text-2xl">{itemCount} {itemCount === 1 ? 'item' : 'items'}</p>
+                        <h1 className="text-3xl font-bold mb-3 text-gray-medium text-4xl">Your Cart</h1>
+                        <p className="text-gray-medium text-2xl">{itemCount} {itemCount === 1 ? 'item' : 'items'}</p>
                     </div>
                 </div>
             </section>
@@ -60,7 +60,7 @@ export default function Cart() {
                                                     height={0}
                                                     className="object-cover w-full h-[136px] md:w-[256px] md:h-[156px] flex"
                                                 />
-                                                {item.game.isNew && <div className="py-2 px-4 text-[#3B3B3B] bg-white absolute left-2 top-2 rounded-lg border">New</div>}
+                                                {item.game.isNew && <div className="py-2 px-4 text-gray-medium bg-white absolute left-2 top-2 rounded-lg border">New</div>}
                                             </div>
 
                                             <button
@@ -74,7 +74,7 @@ export default function Cart() {
                                         <div className="flex flex-col flex-1">
                                             <div className="flex justify-between items-start mb-2 mt-2">
                                                 <div className="flex flex-col gap-3">
-                                                    <p className="text-[#737373] uppercase font-bold">{item.game.genre}</p>
+                                                    <p className="text-gray-light uppercase font-bold">{item.game.genre}</p>
                                                     <h3 className="font-bold text-2xl">{item.game.name}</h3>
                                                 </div>
                                                 <button
@@ -85,7 +85,7 @@ export default function Cart() {
                                                     <Image src="/icons/x-close-icon.svg" width={24} height={24} alt="cart icon" />
                                                 </button>
                                             </div>
-                                            <p className="text-[#737373] mb-3">{item.game.description}</p>
+                                            <p className="text-gray-light mb-3">{item.game.description}</p>
                                             <div className="flex justify-between items-center mt-auto self-end">
                                                 <div className="text-right">
                                                     <p className="font-semibold text-lg">
@@ -104,13 +104,13 @@ export default function Cart() {
 
                     {/* Order summary section */}
                     <div className="sticky top-6  h-fit">
-                        <div className="rounded-lg flex flex-col boder border-[0.5px] border-[#8F8F8F]  px-4 py-6 ">
-                            <h3 className="font-bold text-2xl mb-3 text-[#3B3B3B] mt-2">Order Summary</h3>
-                            <p className="text-[#3B3B3B] text-[1.125rem]">{itemCount} items</p>
+                        <div className="rounded-lg flex flex-col boder border-[0.5px] border-gray-border  px-4 py-6 ">
+                            <h3 className="font-bold text-2xl mb-3 text-gray-medium mt-2">Order Summary</h3>
+                            <p className="text-gray-medium text-[1.125rem]">{itemCount} items</p>
 
                             <div className="space-y-3 pt-12">
                                 {cartItems.map((item) => (
-                                    <div key={item.game.id} className="flex justify-between text-[#3B3B3B] text-[1.125rem]">
+                                    <div key={item.game.id} className="flex justify-between text-gray-medium text-[1.125rem]">
                                         <span className="">
                                             {item.game.name}
                                         </span>
@@ -125,12 +125,12 @@ export default function Cart() {
 
                             <hr className="border-gray-300 my-8" />
 
-                            <div className="flex justify-between text-2xl font-bold text-[#3B3B3B] pb-6">
+                            <div className="flex justify-between text-2xl font-bold text-gray-medium pb-6">
                                 <span>Order Total</span>
                                 <span>${total.toFixed(2)}</span>
                             </div>
                         </div>
-                        <button className="mt-8 w-full h-[56px] bg-[#585660] text-[#FFFFFF] rounded" onClick={() => alert("Hello!!")}>Checkout</button>
+                        <button className="mt-8 w-full h-[56px] bg-background text-white rounded" onClick={() => alert("Hello!!")}>Checkout</button>
                     </div>
 
                 </div>
