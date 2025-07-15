@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <section className="bg-[#404040] box">
+        <section className="bg-footer-bg box">
             <div className="section-container py-8">
                 <div className="self-center" >
                     <Link href="/">
