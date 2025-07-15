@@ -1,8 +1,14 @@
+'use client';
+
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import CardSection from "./CardSection";
+import { useCardService } from "@/hooks/card-service";
 
-export default async function Home() {
+export default function Home() {
+    const { availableFilters, selectedGenre, setGenreFilter } = useCardService();
+
+
     return (
         <main className='box min-h-screen'>
             {/* navbar section */}
@@ -14,7 +20,19 @@ export default async function Home() {
                     <div className="box flex-row justify-start items-center md:justify-end">
                         <p className="font-bold text-xl text-gray-medium">Genre</p>
                         <div className="px-3 text-gray-medium">|</div>
-                        <select className="rounded-md p-2 text-gray-medium bg-transparent min-w-[202px]" name="card-filter-select"><option value="all">All</option></select>
+                        <select
+                            className="rounded-md p-2 text-gray-medium bg-transparent min-w-[202px]"
+                            name="card-filter-select"
+                            value={selectedGenre}
+                            onChange={(e) => setGenreFilter(e.target.value)}
+                        >
+                            <option value="all">All</option>
+                            {availableFilters.map((genre) => (
+                                <option key={genre} value={genre}>
+                                    {genre}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </div>
             </section>
