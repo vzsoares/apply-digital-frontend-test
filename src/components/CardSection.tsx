@@ -22,7 +22,7 @@ export default function CardSection() {
                                     src={item.image}
                                     alt={item.name}
                                     width={380}
-                                    height={240}
+                                    height={0}
                                     className="w-full h-60 object-cover rounded-t-lg"
                                 />
                                 <p className="font-bold text-[#737373] mt-5 mb-3">{item.genre}</p>

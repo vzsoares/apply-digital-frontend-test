@@ -7,7 +7,7 @@ export default function Footer() {
             <div className="section-container py-8">
                 <div className="self-center" >
                     <Link href="/">
-                        <Image src="/images/apply-digital-logo.png" alt="apply-digital-logo" width={170} height={44} />
+                        <Image src="/images/apply-digital-logo.png" alt="apply-digital-logo" width={170} height={0} className="h-[44px] w-auto" />
                     </Link>
                 </div>
             </div>
