@@ -1,13 +1,14 @@
-import { atom, useAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { useCallback, useMemo } from 'react';
 import type { Game } from '@/utils/endpoint';
+import { atomWithStorage } from 'jotai/utils';
 
 export interface CartItem {
     game: Game;
     quantity: number;
 }
 
-export const cartItemsAtom = atom<CartItem[]>([]);
+export const cartItemsAtom = atomWithStorage<CartItem[]>('cart-items', []);
 
 export const useCartService = () => {
     const [cartItems, setCartItems] = useAtom(cartItemsAtom);
