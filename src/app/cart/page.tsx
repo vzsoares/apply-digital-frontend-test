@@ -3,6 +3,7 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { useCartService } from "@/hooks/cart-service";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Cart() {
     const { cartItems, updateQuantity, removeFromCart, subtotal, tax, total, itemCount } = useCartService();
@@ -26,6 +27,12 @@ export default function Cart() {
         <main className='box min-h-screen'>
             {/* navbar section */}
             <Navbar />
+            <section className="box">
+                <Link href="/" className="section-container py-6 flex-row gap-2 cursor-pointer">
+                    <Image src="/icons/arrow-left-icon.svg" width={24} height={24} alt="cart icon" />
+                    <h3 className="text-[#3B3B3B] font-medium">Back to Catalog</h3>
+                </Link>
+            </section>
             {/* Summary section */}
             <section className="box">
                 <div className="section-container py-6 gap-6">
