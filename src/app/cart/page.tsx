@@ -35,113 +35,89 @@ export default function Cart() {
             </section>
             {/* Summary section */}
             <section className="box">
-                <div className="section-container py-6 gap-6">
-                    <div className="text-center">
-                        <h1 className="text-3xl font-bold mb-2">Shopping Cart</h1>
-                        <p className="text-gray-600">{itemCount} {itemCount === 1 ? 'item' : 'items'} in your cart</p>
+                <div className="section-container py-12">
+                    <div className="">
+                        <h1 className="text-3xl font-bold mb-3 text-[#3B3B3B] text-4xl">Your Cart</h1>
+                        <p className="text-[#3B3B3B] text-2xl">{itemCount} {itemCount === 1 ? 'item' : 'items'}</p>
                     </div>
                 </div>
             </section>
             {/* Main section */}
-            <section className="box py-6 flex-1">
-                <div className="section-container">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {/* Product summary section */}
-                        <div className="lg:col-span-2">
-                            <div className="space-y-4">
-                                {cartItems.map((item) => (
-                                    <div key={item.game.id} className="bg-white rounded-lg border p-4 shadow-sm">
-                                        <div className="flex gap-4">
-                                            <div className="relative w-24 h-24 flex-shrink-0">
-                                                <Image
-                                                    src={item.game.image}
-                                                    alt={item.game.name}
-                                                    fill
-                                                    className="object-cover rounded-md"
-                                                />
+            <section className="box pb-12 flex-1">
+                {/* Product summary section */}
+                <div className="section-container flex-column justify-between gap-12 md:flex-row">
+                    <div className="space-y-4">
+                        {cartItems.map((item) => (
+                            <div key={item.game.id} className="bg-white p-4">
+                                <div className="flex gap-6 flex-col md:flex-row">
+                                    <div className="flex gap-3">
+                                        <Image
+                                            src={item.game.image}
+                                            alt={item.game.name}
+                                            width={260}
+                                            height={0}
+                                            className="object-cover w-full h-[136px] md:w-[256px] md:h-[156px] flex"
+                                        />
+                                        <button
+                                            onClick={() => removeFromCart(item.game.id)}
+                                            className="p-1 flex self-start  md:hidden"
+                                            aria-label="Remove item"
+                                        >
+                                            <Image src="/icons/x-close-icon.svg" width={24} height={24} alt="cart icon" />
+                                        </button>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <div className="flex justify-between items-start mb-2 mt-2">
+                                            <div className="flex flex-col gap-3">
+                                                <p className="text-[#737373] uppercase font-bold">{item.game.genre}</p>
+                                                <h3 className="font-bold text-2xl">{item.game.name}</h3>
                                             </div>
-                                            <div className="flex-1">
-                                                <div className="flex justify-between items-start mb-2">
-                                                    <div>
-                                                        <h3 className="font-semibold text-lg">{item.game.name}</h3>
-                                                        <p className="text-sm text-gray-600">{item.game.genre}</p>
-                                                        {item.game.isNew && (
-                                                            <span className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mt-1">
-                                                                New
-                                                            </span>
-                                                        )}
-                                                    </div>
-                                                    <button
-                                                        onClick={() => removeFromCart(item.game.id)}
-                                                        className="text-red-500 hover:text-red-700 p-1"
-                                                        aria-label="Remove item"
-                                                    >
-                                                        {/* <Trash2 size={18} /> */}
-                                                    </button>
-                                                </div>
-                                                <p className="text-sm text-gray-700 mb-3">{item.game.description}</p>
-                                                <div className="flex justify-between items-center">
-                                                    <div className="flex items-center gap-3">
-                                                        <button
-                                                            onClick={() => updateQuantity(item.game.id, item.quantity - 1)}
-                                                            className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50"
-                                                            disabled={item.quantity <= 1}
-                                                        >
-                                                            {/* <Minus size={14} /> */}
-                                                        </button>
-                                                        <span className="font-medium min-w-[2rem] text-center">
-                                                            {item.quantity}
-                                                        </span>
-                                                        <button
-                                                            onClick={() => updateQuantity(item.game.id, item.quantity + 1)}
-                                                            className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50"
-                                                        >
-                                                            {/* <Plus size={14} /> */}
-                                                        </button>
-                                                    </div>
-                                                    <div className="text-right">
-                                                        <p className="font-semibold text-lg">
-                                                            ${(item.game.price * item.quantity).toFixed(2)}
-                                                        </p>
-                                                        <p className="text-sm text-gray-600">
-                                                            ${item.game.price.toFixed(2)} each
-                                                        </p>
-                                                    </div>
-                                                </div>
+                                            <button
+                                                onClick={() => removeFromCart(item.game.id)}
+                                                className="p-1 hidden md:flex"
+                                                aria-label="Remove item"
+                                            >
+                                                <Image src="/icons/x-close-icon.svg" width={24} height={24} alt="cart icon" />
+                                            </button>
+                                        </div>
+                                        <p className="text-[#737373] mb-3">{item.game.description}</p>
+                                        <div className="flex justify-between items-center mt-auto self-end">
+                                            <div className="text-right">
+                                                <p className="font-semibold text-lg">
+                                                    ${(item.game.price).toFixed(2)}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Order summary section */}
-                        <div className="lg:col-span-1">
-                            <div className="bg-gray-50 rounded-lg p-6 sticky top-6">
-                                <h3 className="font-semibold text-xl mb-4">Order Summary</h3>
-                                <div className="space-y-3 mb-4">
-                                    <div className="flex justify-between">
-                                        <span>Subtotal ({itemCount} {itemCount === 1 ? 'item' : 'items'})</span>
-                                        <span>${subtotal.toFixed(2)}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span>Tax</span>
-                                        <span>${tax.toFixed(2)}</span>
-                                    </div>
-                                    <hr className="border-gray-300" />
-                                    <div className="flex justify-between text-lg font-semibold">
-                                        <span>Total</span>
-                                        <span>${total.toFixed(2)}</span>
-                                    </div>
                                 </div>
-                                <button className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-                                    Proceed to Checkout
-                                </button>
-                                <button className="w-full mt-3 border border-gray-300 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-50 transition-colors">
-                                    Continue Shopping
-                                </button>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Order summary section */}
+                    <div className="bg-gray-50 rounded-lg p-6 sticky top-6">
+                        <h3 className="font-semibold text-xl mb-4">Order Summary</h3>
+                        <div className="space-y-3 mb-4">
+                            <div className="flex justify-between">
+                                <span>Subtotal ({itemCount} {itemCount === 1 ? 'item' : 'items'})</span>
+                                <span>${subtotal.toFixed(2)}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span>Tax</span>
+                                <span>${tax.toFixed(2)}</span>
+                            </div>
+                            <hr className="border-gray-300" />
+                            <div className="flex justify-between text-lg font-semibold">
+                                <span>Total</span>
+                                <span>${total.toFixed(2)}</span>
                             </div>
                         </div>
+                        <button className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            Proceed to Checkout
+                        </button>
+                        <button className="w-full mt-3 border border-gray-300 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                            Continue Shopping
+                        </button>
                     </div>
                 </div>
             </section>

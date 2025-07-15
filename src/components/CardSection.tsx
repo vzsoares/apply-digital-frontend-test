@@ -25,7 +25,7 @@ export default function CardSection() {
                                     height={0}
                                     className="w-full h-60 object-cover rounded-t-lg"
                                 />
-                                <p className="font-bold text-[#737373] mt-5 mb-3">{item.genre}</p>
+                                <p className="font-bold text-[#737373] mt-5 mb-3 uppercase">{item.genre}</p>
                                 <div className="flex justify-between mb-5">
                                     <p className="font-bold text-[#3B3B3B] mt-1.5 mb-3">{item.name}</p>
                                     <p className="font-bold text-[#3B3B3B] mt-1.5 mb-3">${item.price}</p>
